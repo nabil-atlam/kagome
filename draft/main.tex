@@ -1,0 +1,129 @@
+\documentclass[12pt]{article} % Here, use Font size 12pt . Default is 10pt 
+\pdfoutput=1
+
+%%%%%%%%%% PACKAGES %%%%%%%%%%%%%%
+
+\usepackage{graphicx} % Handling of Graphics 
+
+% The geometry package. Set the dimensions -- height and width of the text 
+% area 
+\usepackage[height=8.85in,width=6.45in]{geometry} 
+
+% PIFONT -- some nice fonts 
+\usepackage{pifont}
+
+
+% Font. Replaces the default font with the Times New Roman 
+\usepackage{times}
+
+% Encoding -- UTF8 
+\usepackage[utf8]{inputenc}
+
+
+% Math 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% Matrix Formatting 
+\usepackage{blkarray}
+
+% Blackboard bold e.g. Z, C, R, ... Rings -- bolder than \mathbb
+\usepackage{dsfont}
+
+% Accents 
+\usepackage{accents}
+
+% Commenting out entire sections 
+\usepackage{comment}
+
+
+% URLs
+\usepackage{hyperref}
+
+% Citations 
+\usepackage{cite}
+
+% Courier Font 
+%\usepackage{courier}
+
+% Bold Math 
+\usepackage{bm}
+
+% Put text inside Dashboxes 
+\usepackage{dashbox}
+% boxes
+\usepackage{mdframed}
+
+
+
+% Group together subfigures / sub-tables 
+\usepackage{subcaption}
+
+% Lists 
+\usepackage{enumitem}
+
+% Non-italicized Greek Letters 
+% -- usage: \upalpha \upbeta \upgamma 
+\usepackage{upgreek}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Table of Contents 
+% The following controls how the ToC is displayed: 
+%  - {2} => up to subsection will show up in the ToC 
+\setcounter{tocdepth}{2}
+
+
+% Line spacing. Multiply the default spacing between the lines by a factor 
+\renewcommand{\baselinestretch}{1.08}
+
+
+% Change the URL style. Instead of the usual thin font for URLs, use the 
+% times new romans 
+\urlstyle{rm}
+
+% Title ---
+% vspace : Add a vertical space after title of 5 mm 
+% \LARGE[# 1] The arg # 1 i.e. [1] is rendered in LARGE font 
+\renewcommand{\title}[1]{\vbox{\center\LARGE{#1}}\vspace{5mm}}
+
+%%%%%%%%%%%%%%%%%% DEFS %%%%%%%%%%%%%%%%%%%%%%
+%\newcommand*{\TESTPIFONT}{}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\author{Nabil Atlam}
+\date{December 2024}
+
+\begin{document}
+
+\begin{titlepage}
+    \hfill
+    \title{Quantum Geometry in Kagome Models}
+    \abstract{
+      The kagome lattice is one of the most interesting platform for investigating    
+    }
+
+\end{titlepage}
+
+%\maketitle
+
+\section{Introduction}
+
+\begin{equation}
+    \mathds{Z} \mathbb{Z}
+\end{equation}
+
+
+
+
+\ifdefined\TESTPIFONT
+    Ding Symbols: \\
+    51 : \ding{51}\\
+    55 : \ding{55}
+\fi
+
+\end{document}
+
