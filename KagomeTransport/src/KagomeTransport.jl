@@ -1,5 +1,4 @@
 module KagomeTransport
-
-# Write your package code here.
-
+include("HamiltonianConstructors.jl")
+using .Kagome_Hamiltonian
 end

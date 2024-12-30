@@ -5,7 +5,7 @@ module Kagome_Hamiltonian
 using Parameters, StaticArrays, LinearAlgebra
 using Enzyme
 
-export H, Vx, Vy, T1u, T2u, T3u, Params
+export H, Vx, Vy, real_basis, recip_basis, Params
 
 # MODEL PARAMETERS
 @with_kw struct Params
@@ -17,6 +17,12 @@ end
 
 # NBANDS
 nbands = 3
+
+# REAL BASIS 
+global const lattice_constant::Float64 = 1.0
+global const real_basis = SMatrix{2, 2}(lattice_constant * Float64[1.0 0.0; 0.5 0.5*sqrt(3.0)])
+# RECIPROCAL BASIS 
+global const recip_basis::SMatrix{2, 2, Float64, 4} = inv(real_basis)'
 
 # GELL-MANN MATRICES
 global const λ0  = @SArray ComplexF64[1.0 0.0 0.0; 0.0 1.0 0.0; 0.0 0.0 1.0]
