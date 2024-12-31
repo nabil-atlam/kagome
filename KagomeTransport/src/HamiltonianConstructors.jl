@@ -5,7 +5,7 @@ module Kagome_Hamiltonian
 using Parameters, StaticArrays, LinearAlgebra
 using Enzyme
 
-export H, evals3, Vx, Vy, real_basis, recip_basis, Params
+export H, H3, evals3, Vx, Vy, real_basis, recip_basis, Params
 
 # MODEL PARAMETERS
 @with_kw struct Params
@@ -100,9 +100,17 @@ end
 end
 
 @inline function evals3(k::Vector{Float64}, p::Params)
-    H_ut::Matrix{ComplexF64} = ϕ1(k[1], k[2], p) * T1u + ϕ2(k[1], k[2], p) * T2u + ϕ3(k[1], k[2], p) * T3u
+    k1 = k[1]; k2 = k[2]
+    H_ut::Matrix{ComplexF64} = ϕ1(k1, 2, p) * T1u + ϕ2(k1, k2, p) * T2u + ϕ3(k1, k2, p) * T3u
     eigvals(H_ut + H_ut')
 end
+
+@inline function H3(k::Vector{Float64}, p::Params)
+    k1 = k[1]; k2 = k[2]
+    H_ut::Matrix{ComplexF64} = ϕ1(k1, 2, p) * T1u + ϕ2(k1, k2, p) * T2u + ϕ3(k1, k2, p) * T3u
+    H_ut + H_ut'
+end
+
 
 @inline function H(z1::ComplexF64, z2::ComplexF64, p::Params, T1u::SMatrix{ComplexF64}, T2u::SMatrix{ComplexF64}, T3u::SMatrix{ComplexF64})
     H_ut::SMatrix{3, 3, ComplexF64, 9} = ϕ1(z1, z2, p) * T1u + ϕ2(z1, z2, p) * T2u + ϕ3(z1, z2, p) * T3u
