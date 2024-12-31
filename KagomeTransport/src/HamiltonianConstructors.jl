@@ -5,7 +5,7 @@ module Kagome_Hamiltonian
 using Parameters, StaticArrays, LinearAlgebra
 using Enzyme
 
-export H, H3, evals3, Vx, Vy, real_basis, recip_basis, Params
+export H, H3, evals3, Φ1, Vx, Vy, real_basis, recip_basis, Params
 
 # MODEL PARAMETERS
 @with_kw struct Params
@@ -68,19 +68,16 @@ sm = @SArray ComplexF64[0.0 0.0 ; 1.0 0.0]
 
 
 @inline ϕ1(k1::Float64, k2::Float64, p::Params) = begin
-    (p.t1 + im * p.u1) * (1 + exp(2 * pi * im * k1)) 
-    + (p.t2 - im * p.u2) * (exp(2 * pi * im * k2) + exp(2 * pi * im * (k1 - k2)))
+    (p.t1 + im * p.u1) * (1 + exp(-2 * pi * im * k1)) + (p.t2 - im * p.u2) * (exp(-2 * pi * im * k2) + exp(-2 * pi * im * (k1 - k2)))
 end
 
+
 @inline ϕ2(k1::Float64, k2::Float64, p::Params) = begin
-    (p.t1 - im * p.u1) * (1 + exp(2 * pi * im * k2))
-    + (p.t2 + im * p.u2) * (exp(2 * pi * im * k1) + exp(-2 * pi * im * (k1 - k2)))
+    (p.t1 - im * p.u1) * (1 + exp(-2 * pi * im * k2)) + (p.t2 + im * p.u2) * (exp(-2 * pi * im * k1) + exp(2 * pi * im * (k1 - k2)))
 end
 
 @inline ϕ3(k1::Float64, k2::Float64, p::Params) = begin
-    (p.t1 + im * p.u1) * (1 + exp(-2 * pi * im * (k1 - k2)))
-    + (p.t2 - im * p.u2) * (exp(2 * pi * im * k2) + exp(2 * pi * im * (k1 - k2)))
-    + (p.t2 - im * p.u2) * (exp(-2 * pi * im * k1) + exp(2 * pi * im * k2))
+    (p.t1 + im * p.u1) * (1 + exp(2 * pi * im * (k1 - k2))) + (p.t2 - im * p.u2) * (exp(-2 * pi * im * k2) + exp(2 * pi * im * (k1 - k2))) + (p.t2 - im * p.u2) * (exp(-2 * pi * im * k1) + exp(2 * pi * im * k2))
 end
 
 
@@ -101,13 +98,13 @@ end
 
 @inline function evals3(k::Vector{Float64}, p::Params)
     k1 = k[1]; k2 = k[2]
-    H_ut::Matrix{ComplexF64} = ϕ1(k1, 2, p) * T1u + ϕ2(k1, k2, p) * T2u + ϕ3(k1, k2, p) * T3u
+    H_ut::Matrix{ComplexF64} = ϕ1(k1, k2, p) * T1u + ϕ2(k1, k2, p) * T2u + ϕ3(k1, k2, p) * T3u
     eigvals(H_ut + H_ut')
 end
 
 @inline function H3(k::Vector{Float64}, p::Params)
     k1 = k[1]; k2 = k[2]
-    H_ut::Matrix{ComplexF64} = ϕ1(k1, 2, p) * T1u + ϕ2(k1, k2, p) * T2u + ϕ3(k1, k2, p) * T3u
+    H_ut::Matrix{ComplexF64} = ϕ1(k1, k2, p) * T1u + ϕ2(k1, k2, p) * T2u + ϕ3(k1, k2, p) * T3u
     H_ut + H_ut'
 end
 
@@ -181,7 +178,5 @@ end
     H_ut::SMatrix{3, 3, ComplexF64, 9} = dϕ1dky(z1, z2, p) * T1u + dϕ2dky(z1, z2, p) * T2u + dϕ3dky(z1, z2, p) * T3u
     H_ut + H_ut'
 end
-
-
 
 end 
