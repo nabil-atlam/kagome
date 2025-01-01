@@ -57,6 +57,44 @@ sm = @SArray ComplexF64[0.0 0.0 ; 1.0 0.0]
 τp = sp; τm = sm
 τx = sx; τy = sy; τz = sz 
 
+
+###################################################################################################
+# Φ FUNCTIONS TAKING CARTESIAN 
+# Remark:  k2  = -1/2 kx - 1 / 2 sqrt(3) ky          -0.5 * kx - 0.5 * sqrt(3.0) * ky
+#       : -k3  =  1/2 kx - 1 / 2 sqrt(3) ky           0.5 * kx - 0.5 * sqrt(3.0) * ky
+
+@inline function fdΦ1dkx_c(kx, ky)
+    -1.0 * (sin(kx) + im * cos(kx))
+end
+
+@inline function fdΦ1dky_c(kx, ky)
+    0.0
+end
+
+
+
+@inline function fdΦ2dkx_c(kx, ky)
+    0.5 * (sin(-0.5 * kx - 0.5 * sqrt(3.0) * ky) + im * cos(-0.5 * kx - 0.5 * sqrt(3.0) * ky))
+end
+
+@inline function fdΦ2dky_c(kx, ky)
+    0.5 * sqrt(3.0) * (sin(-0.5 * kx - 0.5 * sqrt(3.0) * ky) - im * cos(-0.5 * kx - 0.5 * sqrt(3.0) * ky))
+end
+
+
+
+@inline function fdΦ3dkx_c(kx, ky)
+    0.5 * (-sin(0.5 * kx - 0.5 * sqrt(3.0) * ky) + im * cos(0.5 * kx - 0.5 * sqrt(3.0) * ky))
+end
+
+@inline function fdΦ3dky_c(kx, ky)
+    0.5 * sqrt(3.0) * (sin(0.5 * kx - 0.5 * sqrt(3.0) * ky) - im * cos(0.5 * kx - 0.5 * sqrt(3.0) * ky))
+end
+###################################################################################################
+
+
+
+
 # RATIONAL POLYNOMIALS -- Here, the couplings are complexified due to spin-orbit effects 
 @inline ϕ1(z1::ComplexF64, z2::ComplexF64, p::Params) = (p.t1 + im * p.u1) * (1 + z1) + (p.t2 - im * p.u2) * (z2 + z1 / z2)
 @inline ϕ2(z1::ComplexF64, z2::ComplexF64, p::Params) = (p.t1 - im * p.u1) * (1 + z2) + (p.t2 + im * p.u2) * (z1 + z2 / z1)
