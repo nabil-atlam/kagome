@@ -58,6 +58,7 @@ sm = @SArray ComplexF64[0.0 0.0 ; 1.0 0.0]
 τx = sx; τy = sy; τz = sz 
 
 
+
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
@@ -109,20 +110,36 @@ end
 
 
 @inline ϕ1(k1::Float64, k2::Float64, p::Params) = begin
-    (p.t1 + im * p.u1) * (1 + exp(-2 * pi * im * k1)) + (p.t2 - im * p.u2) * (exp(-2 * pi * im * k2) + exp(-2 * pi * im * (k1 - k2)))
+    (p.t1 + im * p.u1) * (1 + exp(2 * pi * im * k1)) + (p.t2 - im * p.u2) * (exp(2 * pi * im * k2) + exp(2 * pi * im * (k1 - k2)))
 end
 
 
 @inline ϕ2(k1::Float64, k2::Float64, p::Params) = begin
-    (p.t1 - im * p.u1) * (1 + exp(-2 * pi * im * k2)) + (p.t2 + im * p.u2) * (exp(-2 * pi * im * k1) + exp(2 * pi * im * (k1 - k2)))
+    (p.t1 - im * p.u1) * (1 + exp(2 * pi * im * k2)) + (p.t2 + im * p.u2) * (exp(2 * pi * im * k1) + exp(-2 * pi * im * (k1 - k2)))
 end
 
 @inline ϕ3(k1::Float64, k2::Float64, p::Params) = begin
-    (p.t1 + im * p.u1) * (1 + exp(2 * pi * im * (k1 - k2))) + (p.t2 - im * p.u2) * (exp(-2 * pi * im * k2) + exp(2 * pi * im * (k1 - k2))) + (p.t2 - im * p.u2) * (exp(-2 * pi * im * k1) + exp(2 * pi * im * k2))
+    (p.t1 + im * p.u1) * (1 + exp(-2 * pi * im * (k1 - k2))) + (p.t2 - im * p.u2) * (exp(-2 * pi * im * k1) + exp(2 * pi * im * k2))
 end
 
 
-# Hamiltonian 
+############################ HAMILTONIAN #######################################################
+@inline function evals3(k::Vector{Float64}, p::Params)
+    k1 = k[1]; k2 = k[2]
+    H_ut::Matrix{ComplexF64} = ϕ1(k1, k2, p) * T1u + ϕ2(k1, k2, p) * T2u + ϕ3(k1, k2, p) * T3u
+    eigvals(H_ut + H_ut')
+end
+
+@inline function H3(k::Vector{Float64}, p::Params)
+    k1 = k[1]; k2 = k[2]
+    H_ut::Matrix{ComplexF64} = ϕ1(k1, k2, p) * T1u + ϕ2(k1, k2, p) * T2u + ϕ3(k1, k2, p) * T3u
+    H_ut + H_ut'
+end
+
+
+############################ ##################################################################
+
+
 @inline function H(z1::ComplexF64, z2::ComplexF64, p::Params, T1u::Matrix{ComplexF64}, T2u::Matrix{ComplexF64}, T3u::Matrix{ComplexF64})
     H_ut::Matrix{ComplexF64} = ϕ1(z1, z2, p) * T1u + ϕ2(z1, z2, p) * T2u + ϕ3(z1, z2, p) * T3u
     H_ut + H_ut'
@@ -133,18 +150,6 @@ end
     H_ut + H_ut'
 end
 @inline function H(k1::Float64, k2::Float64, p::Params)
-    H_ut::Matrix{ComplexF64} = ϕ1(k1, k2, p) * T1u + ϕ2(k1, k2, p) * T2u + ϕ3(k1, k2, p) * T3u
-    H_ut + H_ut'
-end
-
-@inline function evals3(k::Vector{Float64}, p::Params)
-    k1 = k[1]; k2 = k[2]
-    H_ut::Matrix{ComplexF64} = ϕ1(k1, k2, p) * T1u + ϕ2(k1, k2, p) * T2u + ϕ3(k1, k2, p) * T3u
-    eigvals(H_ut + H_ut')
-end
-
-@inline function H3(k::Vector{Float64}, p::Params)
-    k1 = k[1]; k2 = k[2]
     H_ut::Matrix{ComplexF64} = ϕ1(k1, k2, p) * T1u + ϕ2(k1, k2, p) * T2u + ϕ3(k1, k2, p) * T3u
     H_ut + H_ut'
 end
