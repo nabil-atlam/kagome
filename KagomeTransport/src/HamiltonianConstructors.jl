@@ -94,7 +94,7 @@ end
     nnn = -0.5 * sqrt(3.0) * sin(pm) + 0.5 * sqrt(3.0) * im*cos(pm)
     (p.t1 - im * p.u1) * nn + (p.t2 + im * p.u2) * nnn
 
-
+end
 
 @inline function fdΦ3dkx_c(kx, ky, p)
     pp = 0.5 * kx + 0.5 * sqrt(3.0) * ky; pm = -0.5 * kx + 0.5 * sqrt(3.0) * ky
