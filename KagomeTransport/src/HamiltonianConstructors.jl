@@ -128,8 +128,7 @@ end
 @inline ϕ1c(kx::Float64, ky::Float64, p::Params) = begin
     pp = 0.5 * kx + 0.8660254037844386 * ky; pm = 0.5 * kx - 0.8660254037844386 * ky
     
-    (p.t1 + im * p.u1) * (1.0 + cos(kx) + im * sin(kx)) + \
-    (p.t2 - im * p.u2) * (cos(pp) + cos(pm) + im*(sin(pp) + sin(pm)))
+    (p.t1 + im * p.u1) * (1.0 + cos(kx) + im * sin(kx)) + (p.t2 - im * p.u2) * (cos(pp) + cos(pm) + im*(sin(pp) + sin(pm)))
 
 end
 
@@ -137,14 +136,12 @@ end
 @inline ϕ2c(kx::Float64, ky::Float64, p::Params) = begin
     pp = 0.5 * kx + 0.8660254037844386 * ky; pm = 0.5 * kx - 0.8660254037844386 * ky
 
-    (p.t1 - im * p.u1) * (1.0 + cos(pp) + im * sin(pp)) + \
-    (p.t2 + im * p.u2) * (cos(kx) + cos(pm) + im * (-sin(pm) + sin(kx)))
+    (p.t1 - im * p.u1) * (1.0 + cos(pp) + im * sin(pp)) + (p.t2 + im * p.u2) * (cos(kx) + cos(pm) + im * (-sin(pm) + sin(kx)))
 end
 
 @inline ϕ3c(kx::Float64, ky::Float64, p::Params) = begin
     pp = 0.5 * kx + 0.8660254037844386 * ky; pm = -0.5 * kx + 0.8660254037844386 * ky
-    (p.t1 + im * p.u1) * (1.0 + cos(pm) + im*sin(pm)) + \
-    (p.t2 - im * p.u2) * (cos(-kx) + cos(pp) + im * (sin(-kx) + sin(pp)))
+    (p.t1 + im * p.u1) * (1.0 + cos(pm) + im*sin(pm)) + (p.t2 - im * p.u2) * (cos(-kx) + cos(pp) + im * (sin(-kx) + sin(pp)))
 end
 
 
