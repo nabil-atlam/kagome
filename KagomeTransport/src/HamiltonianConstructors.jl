@@ -5,7 +5,7 @@ module Kagome_Hamiltonian
 using Parameters, StaticArrays, LinearAlgebra
 using Enzyme
 
-export H, H3, evals3, evals3c, eigensystem3c, Φ1, Vx, Vy, real_basis, recip_basis, Params
+export H, H3, evals3, evals3c, eigensystem3c, Velx, Vely, real_basis, recip_basis, Params
 
 # MODEL PARAMETERS
 @with_kw struct Params
