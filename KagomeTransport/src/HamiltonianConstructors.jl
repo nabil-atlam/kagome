@@ -5,7 +5,7 @@ module Kagome_Hamiltonian
 using Parameters, StaticArrays, LinearAlgebra
 using Enzyme
 
-export H, H3, evals3, Φ1, Vx, Vy, real_basis, recip_basis, Params
+export H, H3, evals3, evals3c, Φ1, Vx, Vy, real_basis, recip_basis, Params
 
 # MODEL PARAMETERS
 @with_kw struct Params
@@ -155,7 +155,7 @@ end
     eigvals(H_ut + H_ut')
 end
 
-@inline function evalsc(k::Vector{Float64}, p::Params)
+@inline function evals3c(k::Vector{Float64}, p::Params)
     k1 = k[1]; k2 = k[2]
     H_ut::Matrix{ComplexF64} = ϕ1c(k1, k2, p) * T1u + ϕ2c(k1, k2, p) * T2u + ϕ3c(k1, k2, p) * T3u
     eigvals(H_ut + H_ut')
