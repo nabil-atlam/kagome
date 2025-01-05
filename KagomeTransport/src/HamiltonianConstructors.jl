@@ -189,7 +189,16 @@ end
 end
 
 
-############################ ##################################################################
+############################ VELOCITIES ###################################################
+@inline function Velx(kx::Float64, ky::Float64, p::Params)
+    V::Matrix{ComplexF64} = fdΦ1dkx_c(kx, ky, p) * T1u + fdΦ2dkx_c(kx, ky, p) * T2u + fdΦ3dkx_c(kx, ky, p) * T3u
+    V + V'
+end
+
+@inline function Vely(kx::Float64, ky::Float64, p::Params)
+    V::Matrix{ComplexF64} = fdΦ1dky_c(kx, ky, p) * T1u + fdΦ2dky_c(kx, ky, p) * T2u + fdΦ3dky_c(kx, ky, p) * T3u
+    V + V'
+end
 
 
 @inline function H(z1::ComplexF64, z2::ComplexF64, p::Params, T1u::Matrix{ComplexF64}, T2u::Matrix{ComplexF64}, T3u::Matrix{ComplexF64})
