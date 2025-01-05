@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex main"] 1736020797.64179 "main.aux" "main.bbl" "main" 1736020799.21595 0
-  "./Kagome.bib" 1736020433.96771 1228 0c394921e3bc7c084a7f361968172cc1 ""
-  "./Transport.bib" 1736020745.76008 11076 02bc53657221932da8f49bd08a67c5e4 ""
+["bibtex main"] 1736040344.893 "main.aux" "main.bbl" "main" 1736040345.00788 0
+  "./Kagome.bib" 1736040344.72557 8846 624dbaa322c1d440603aebb192ed12d4 ""
+  "./Transport.bib" 1736025744.73304 11076 02bc53657221932da8f49bd08a67c5e4 ""
   "./apsrev4-2.bst" 1655845222 69609 e9dea59f0e753ccda3ddc8f5806d846d ""
-  "./mainNotes.bib" 1736020798.40395 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "main.aux" 1736020798.53695 1321 209bf2a37ba8300c35ff7889dbd41547 "pdflatex"
+  "./mainNotes.bib" 1736040199.21603 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "main.aux" 1736040199.29503 1321 209bf2a37ba8300c35ff7889dbd41547 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1736020797.78631 "/home/nabil/work/projects/kagome/draft/main.tex" "main.pdf" "main" 1736020799.21621 0
+["pdflatex"] 1736040198.84781 "/home/nabil/work/projects/kagome/draft/main.tex" "main.pdf" "main" 1736040345.00795 0
   "/home/nabil/work/projects/kagome/draft/main.tex" 1736020794.45896 1504 ebdb03ddbf7bac5baa88d6b92dc8a0bb ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -160,9 +160,9 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1735524139 3347788 313d872a48aa8b9b9c57cc3948d047eb ""
   "/usr/local/texlive/2024/texmf.cnf" 1735524022.43973 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
   "aps.sty" 1736018466.10244 1079 88669329ddc6207332eaf79a2fc968e0 ""
-  "main.aux" 1736020798.53695 1321 209bf2a37ba8300c35ff7889dbd41547 "pdflatex"
-  "main.bbl" 1736020797.78095 3852 d28dd91feada921056c49c50c1fef123 "bibtex main"
-  "main.out" 1736020798.53795 746 3851f1fd3f40d7fc2e46cb189f961c73 "pdflatex"
+  "main.aux" 1736040199.29503 1321 209bf2a37ba8300c35ff7889dbd41547 "pdflatex"
+  "main.bbl" 1736040345.00457 3852 d28dd91feada921056c49c50c1fef123 "bibtex main"
+  "main.out" 1736040199.29503 746 3851f1fd3f40d7fc2e46cb189f961c73 "pdflatex"
   "main.tex" 1736020794.45896 1504 ebdb03ddbf7bac5baa88d6b92dc8a0bb ""
   (generated)
   "main.aux"

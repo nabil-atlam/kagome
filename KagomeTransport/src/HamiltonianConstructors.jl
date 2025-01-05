@@ -123,6 +123,22 @@ end
 end
 
 
+# These take cartesian coordinates 
+
+@inline ϕ1c(kx::Float64, ky::Float64, p::Params) = begin
+    (p.t1 + im * p.u1) * (1 + exp(2 * pi * im * k1)) + (p.t2 - im * p.u2) * (exp(2 * pi * im * k2) + exp(2 * pi * im * (k1 - k2)))
+end
+
+
+@inline ϕ2c(kx::Float64, ky::Float64, p::Params) = begin
+    (p.t1 - im * p.u1) * (1 + exp(2 * pi * im * k2)) + (p.t2 + im * p.u2) * (exp(2 * pi * im * k1) + exp(-2 * pi * im * (k1 - k2)))
+end
+
+@inline ϕ3c(kx::Float64, ky::Float64, p::Params) = begin
+    (p.t1 + im * p.u1) * (1 + exp(-2 * pi * im * (k1 - k2))) + (p.t2 - im * p.u2) * (exp(-2 * pi * im * k1) + exp(2 * pi * im * k2))
+end
+
+
 ############################ HAMILTONIAN #######################################################
 @inline function evals3(k::Vector{Float64}, p::Params)
     k1 = k[1]; k2 = k[2]
