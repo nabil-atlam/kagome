@@ -5,7 +5,7 @@ module Kagome_Hamiltonian
 using Parameters, StaticArrays, LinearAlgebra
 using Enzyme
 
-export H, H3, evals3, evals3c, Φ1, Vx, Vy, real_basis, recip_basis, Params
+export H, H3, evals3, evals3c, eigensystem3c, Φ1, Vx, Vy, real_basis, recip_basis, Params
 
 # MODEL PARAMETERS
 @with_kw struct Params
@@ -66,32 +66,48 @@ sm = @SArray ComplexF64[0.0 0.0 ; 1.0 0.0]
 # Remark:  k2  = -1/2 kx - 1 / 2 sqrt(3) ky          -0.5 * kx - 0.5 * sqrt(3.0) * ky
 #       : -k3  =  1/2 kx - 1 / 2 sqrt(3) ky           0.5 * kx - 0.5 * sqrt(3.0) * ky
 
-@inline function fdΦ1dkx_c(kx, ky)
-    -1.0 * (sin(kx) + im * cos(kx))
+@inline function fdΦ1dkx_c(kx, ky, p)
+    pp = 0.5 * kx + 0.5 * sqrt(3.0) * ky; pm = 0.5 * kx - 0.5 * sqrt(3.0) * ky
+    nn = -sin(kx) + im*cos(kx)
+    nnn = -0.5 * (sin(pp) + sin(pm)) + 0.5 * im * (cos(pp) + cos(pm))
+    (p.t1 + im * p.u1) * nn + (p.t2 - im * p.u2) * nnn
 end
 
-@inline function fdΦ1dky_c(kx, ky)
-    0.0
-end
-
-
-
-@inline function fdΦ2dkx_c(kx, ky)
-    0.5 * (sin(-0.5 * kx - 0.5 * sqrt(3.0) * ky) + im * cos(-0.5 * kx - 0.5 * sqrt(3.0) * ky))
-end
-
-@inline function fdΦ2dky_c(kx, ky)
-    0.5 * sqrt(3.0) * (sin(-0.5 * kx - 0.5 * sqrt(3.0) * ky) - im * cos(-0.5 * kx - 0.5 * sqrt(3.0) * ky))
+@inline function fdΦ1dky_c(kx, ky, p)
+    pp = 0.5 * kx + 0.5 * sqrt(3.0) * ky; pm = 0.5 * kx - 0.5 * sqrt(3.0) * ky
+    nnn = -0.5 * sqrt(3.0) * sin(pp) + 0.5 * sqrt(3.0) * sin(pm) + im * 0.5 * sqrt(3.0) * (cos(pp) - cos(pm))
+   (p.t2 - im * p.u2) * nnn
 end
 
 
 
-@inline function fdΦ3dkx_c(kx, ky)
-    0.5 * (-sin(0.5 * kx - 0.5 * sqrt(3.0) * ky) + im * cos(0.5 * kx - 0.5 * sqrt(3.0) * ky))
+@inline function fdΦ2dkx_c(kx, ky, p)
+    pp = 0.5 * kx + 0.5 * sqrt(3.0) * ky; pm = -0.5 * kx + 0.5 * sqrt(3.0) * ky
+    nn = -0.5 * sin(pp) + 0.5 * im *cos(pp)
+    nnn = 0.5 * sin(pm) - sin(kx) + im * (cos(kx) - 0.5 * cos(pm))
+    (p.t1 - im * p.u1) * nn + (p.t2 + im * p.u2) * nnn
 end
 
-@inline function fdΦ3dky_c(kx, ky)
-    0.5 * sqrt(3.0) * (sin(0.5 * kx - 0.5 * sqrt(3.0) * ky) - im * cos(0.5 * kx - 0.5 * sqrt(3.0) * ky))
+@inline function fdΦ2dky_c(kx, ky, p)
+    pp = 0.5 * kx + 0.5 * sqrt(3.0) * ky; pm = -0.5 * kx + 0.5 * sqrt(3.0) * ky
+    nn = -0.5 * sqrt(3.0) * sin(pp) + 0.5 * sqrt(3.0) * im * cos(pp)
+    nnn = -0.5 * sqrt(3.0) * sin(pm) + 0.5 * sqrt(3.0) * im*cos(pm)
+    (p.t1 - im * p.u1) * nn + (p.t2 + im * p.u2) * nnn
+
+
+
+@inline function fdΦ3dkx_c(kx, ky, p)
+    pp = 0.5 * kx + 0.5 * sqrt(3.0) * ky; pm = -0.5 * kx + 0.5 * sqrt(3.0) * ky
+    nn = 0.5 * sin(pm) - 0.5 * im * cos(pm)
+    nnn = sin(-kx) - 0.5 * sin(pp) + im * (-cos(kx) + 0.5 * cos(pp))
+    (p.t1 + im * p.u1) * nn + (p.t2 - im * p.u2) * nnn
+end
+
+@inline function fdΦ3dky_c(kx, ky, p)
+    pp = 0.5 * kx + 0.5 * sqrt(3.0) * ky; pm = -0.5 * kx + 0.5 * sqrt(3.0) * ky
+    nn = -0.5 * sqrt(3.0) * sin(pm) + 0.5 * sqrt(3.0) * im*cos(pm)
+    nnn = -0.5 * sqrt(3.0) * sin(pp) + 0.5 * sqrt(3.0) * im*cos(pp)
+    (p.t1 + im * p.u1) * nn + (p.t2 - im * p.u2) * nnn
 end
 ###################################################################################################
 ###################################################################################################
@@ -157,6 +173,13 @@ end
     H_ut::Matrix{ComplexF64} = ϕ1c(k1, k2, p) * T1u + ϕ2c(k1, k2, p) * T2u + ϕ3c(k1, k2, p) * T3u
     eigvals(H_ut + H_ut')
 end
+
+@inline function eigensystem3c(k::Vector{Float64}, p::Params)
+    k1 = k[1]; k2 = k[2]
+    H_ut::Matrix{ComplexF64} = ϕ1c(k1, k2, p) * T1u + ϕ2c(k1, k2, p) * T2u + ϕ3c(k1, k2, p) * T3u
+    eigen(Hermitian(H_ut + H_ut'))
+end
+
 
 
 @inline function H3(k::Vector{Float64}, p::Params)
