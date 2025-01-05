@@ -20,7 +20,7 @@ nbands = 3
 
 # REAL BASIS 
 global const lattice_constant::Float64 = 1.0
-global const real_basis = SMatrix{2, 2}(-1.0 * lattice_constant * Float64[1.0 0.0; 0.5 0.5*sqrt(3.0)])
+global const real_basis = SMatrix{2, 2}(1.0 * lattice_constant * Float64[1.0 0.0; 0.5 0.5*sqrt(3.0)])
 # RECIPROCAL BASIS 
 global const recip_basis::SMatrix{2, 2, Float64, 4} = inv(real_basis)'
 
@@ -126,16 +126,25 @@ end
 # These take cartesian coordinates 
 
 @inline ϕ1c(kx::Float64, ky::Float64, p::Params) = begin
-    (p.t1 + im * p.u1) * (1 + exp(2 * pi * im * k1)) + (p.t2 - im * p.u2) * (exp(2 * pi * im * k2) + exp(2 * pi * im * (k1 - k2)))
+    pp = 0.5 * kx + 0.8660254037844386 * ky; pm = 0.5 * kx - 0.8660254037844386 * ky
+    
+    (p.t1 + im * p.u1) * (1.0 + cos(kx) + im * sin(kx)) + \
+    (p.t2 - im * p.u2) * (cos(pp) + cos(pm) + im*(sin(pp) + sin(pm)))
+
 end
 
 
 @inline ϕ2c(kx::Float64, ky::Float64, p::Params) = begin
-    (p.t1 - im * p.u1) * (1 + exp(2 * pi * im * k2)) + (p.t2 + im * p.u2) * (exp(2 * pi * im * k1) + exp(-2 * pi * im * (k1 - k2)))
+    pp = 0.5 * kx + 0.8660254037844386 * ky; pm = 0.5 * kx - 0.8660254037844386 * ky
+
+    (p.t1 - im * p.u1) * (1.0 + cos(pp) + im * sin(pp)) + \
+    (p.t2 + im * p.u2) * (cos(kx) + cos(pm) + im * (-sin(pm) + sin(kx)))
 end
 
 @inline ϕ3c(kx::Float64, ky::Float64, p::Params) = begin
-    (p.t1 + im * p.u1) * (1 + exp(-2 * pi * im * (k1 - k2))) + (p.t2 - im * p.u2) * (exp(-2 * pi * im * k1) + exp(2 * pi * im * k2))
+    pp = 0.5 * kx + 0.8660254037844386 * ky; pm = -0.5 * kx + 0.8660254037844386 * ky
+    (p.t1 + im * p.u1) * (1.0 + cos(pm) + im*sin(pm)) + \
+    (p.t2 - im * p.u2) * (cos(-kx) + cos(pp) + im * (sin(-kx) + sin(pp)))
 end
 
 
@@ -145,6 +154,13 @@ end
     H_ut::Matrix{ComplexF64} = ϕ1(k1, k2, p) * T1u + ϕ2(k1, k2, p) * T2u + ϕ3(k1, k2, p) * T3u
     eigvals(H_ut + H_ut')
 end
+
+@inline function evalsc(k::Vector{Float64}, p::Params)
+    k1 = k[1]; k2 = k[2]
+    H_ut::Matrix{ComplexF64} = ϕ1c(k1, k2, p) * T1u + ϕ2c(k1, k2, p) * T2u + ϕ3c(k1, k2, p) * T3u
+    eigvals(H_ut + H_ut')
+end
+
 
 @inline function H3(k::Vector{Float64}, p::Params)
     k1 = k[1]; k2 = k[2]
