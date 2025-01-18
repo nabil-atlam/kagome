@@ -1,17 +1,18 @@
 # Fdb version 4
-["bibtex main"] 1736738507.48919 "main.aux" "main.bbl" "main" 1736744529.13173 0
+["bibtex main"] 1737227710.75271 "main.aux" "main.bbl" "main" 1737227711.74413 0
   "./Kagome.bib" 1736178556.59155 11965 9d42bbc8721e6f2303dd2b3c06ab97cb ""
   "./Transport.bib" 1736634946.48184 13504 8869824169ee7bb72bdb86723a199200 ""
   "./apsrev4-2.bst" 1655845222 69609 e9dea59f0e753ccda3ddc8f5806d846d ""
-  "./mainNotes.bib" 1736744528.2789 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "main.aux" 1736744528.4139 1128 da58b7cb87854d0f6ac1496c975a2963 "pdflatex"
+  "./mainNotes.bib" 1737227711.21793 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "main.aux" 1737227711.30393 1610 ec9098b656a327ebc8fbfb3fe619c6ab "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1736744527.66138 "/home/nabil/work/projects/kagome/draft/main.tex" "main.pdf" "main" 1736744529.13202 0
-  "/home/nabil/work/projects/kagome/draft/main.tex" 1736744527.3519 1463 b4c7beeae69ac8e4f6115cbdd8774885 ""
+["pdflatex"] 1737227710.85178 "/home/nabil/work/projects/kagome/draft/main.tex" "main.pdf" "main" 1737227711.74428 0
+  "/home/nabil/work/projects/kagome/draft/main.tex" 1737227709.75893 2372 8fa1936bb06d3cea06a980bda62ca075 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc" 1529098226 3124 3813fd4c981d99822890a2861b0d274c ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1246382020 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -54,9 +55,11 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1r.tfm" 1690487162 3056 db59b44fb00cc29b676bd92c4dc6750f ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/newtx/txbmiaX.tfm" 1724614892 1704 e045bb912521801ef26361cefa2c1da4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm" 1724614892 1708 0e60bf8db0699a0f3e7689a7572f87b4 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/tex-gyre/ts1-qtmr.tfm" 1255129411 1600 20cdf11dab97d5d39e847571f9314407 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmb.pfb" 1698694482 255251 958c6ad4e5518904a53cf1118c612893 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmr.pfb" 1698694482 286816 82db2bfe6920054b1a43661c07078412 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmri.pfb" 1698694482 248316 6c047e35119cde1bffb3263909816feb ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb" 1255129411 133302 8dca243a80ecf4cfe00077d4bd995bd7 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/newtx/ntx-Bold-tlf-ot1.vf" 1572470264 956 0cf724d01d1d2d4ced0eca019099663a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/newtx/ntx-Italic-tlf-ot1.vf" 1572470264 956 2e470d34f6c84588eb717201f2f99e2d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/newtx/ntx-Regular-tlf-ot1.vf" 1583272976 956 44be8e0aea9c6d145fc21c9948a6b4b5 ""
@@ -139,6 +142,7 @@
   "/usr/local/texlive/2024/texmf-dist/tex/latex/needspace/needspace.sty" 1364856750 852 0e34dbb72efc69fa07602405ad95585e ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/newtx/newtxtext.sty" 1712178813 30156 0a19c9edb32312a6fb89020d05f0976d ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd" 1641850547 2241 e9e29b034b8eb01c46f61e2fc5a445b2 ""
+  "/usr/local/texlive/2024/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd" 1423006468 1219 06811c362a6c86c10e17f80577d8ceee ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/refcount/refcount.sty" 1576624809 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657483315 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/revtex/aps10pt4-2.rtx" 1685563380 4721 1078241377b2832c365c1e433df5a943 ""
@@ -160,10 +164,10 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1735524139 3347788 313d872a48aa8b9b9c57cc3948d047eb ""
   "/usr/local/texlive/2024/texmf.cnf" 1735524022.43973 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
   "aps.sty" 1736018466.10244 1079 88669329ddc6207332eaf79a2fc968e0 ""
-  "main.aux" 1736744528.4139 1128 da58b7cb87854d0f6ac1496c975a2963 "pdflatex"
-  "main.bbl" 1736738507.66025 2619 4ffb2c4d42c32710bc19dc087f488ba4 "bibtex main"
-  "main.out" 1736744528.4139 921 1203f950047e04ed854df6b81e050fac "pdflatex"
-  "main.tex" 1736744527.3519 1463 b4c7beeae69ac8e4f6115cbdd8774885 ""
+  "main.aux" 1737227711.30393 1610 ec9098b656a327ebc8fbfb3fe619c6ab "pdflatex"
+  "main.bbl" 1737227710.84793 2619 4ffb2c4d42c32710bc19dc087f488ba4 "bibtex main"
+  "main.out" 1737227711.30493 1597 af14f5b1ed23459111a2960b589af614 "pdflatex"
+  "main.tex" 1737227709.75893 2372 8fa1936bb06d3cea06a980bda62ca075 ""
   (generated)
   "main.aux"
   "main.log"
