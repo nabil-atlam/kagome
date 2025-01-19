@@ -6,7 +6,7 @@
 %Control: page (0) single
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
-\begin{thebibliography}{1}%
+\begin{thebibliography}{3}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -51,5 +51,11 @@
 %</preamble>
 \bibitem [{\citenamefont {Tang}\ \emph {et~al.}(2011)\citenamefont {Tang}, \citenamefont {Mei},\ and\ \citenamefont {Wen}}]{tangHighTemperatureFractionalQuantum2011a}%
   \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Tang}}, \bibinfo {author} {\bibfnamefont {J.-W.}\ \bibnamefont {Mei}},\ and\ \bibinfo {author} {\bibfnamefont {X.-G.}\ \bibnamefont {Wen}},\ }\href {https://doi.org/10.1103/PhysRevLett.106.236802} {\bibfield  {journal} {\bibinfo  {journal} {Physical Review Letters}\ }\textbf {\bibinfo {volume} {106}},\ \bibinfo {pages} {236802} (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Tang}}, \bibinfo {author} {\bibfnamefont {J.-W.}\ \bibnamefont {Mei}},\ and\ \bibinfo {author} {\bibfnamefont {X.-G.}\ \bibnamefont {Wen}},\ }\href {https://doi.org/10.1103/PhysRevLett.106.236802} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {106}},\ \bibinfo {pages} {236802} (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Herrera}\ \emph {et~al.}(2022)\citenamefont {Herrera}, \citenamefont {Kempkes}, \citenamefont {De~Paz}, \citenamefont {{Garc{\'i}a-Etxarri}}, \citenamefont {Swart}, \citenamefont {Smith},\ and\ \citenamefont {Bercioux}}]{herreraCornerModesBreathing2022}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~A.~J.}\ \bibnamefont {Herrera}}, \bibinfo {author} {\bibfnamefont {S.~N.}\ \bibnamefont {Kempkes}}, \bibinfo {author} {\bibfnamefont {M.~B.}\ \bibnamefont {De~Paz}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {{Garc{\'i}a-Etxarri}}}, \bibinfo {author} {\bibfnamefont {I.}~\bibnamefont {Swart}}, \bibinfo {author} {\bibfnamefont {C.~M.}\ \bibnamefont {Smith}},\ and\ \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Bercioux}},\ }\href {https://doi.org/10.1103/PhysRevB.105.085411} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {105}},\ \bibinfo {pages} {085411} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Geschner}\ \emph {et~al.}(2024)\citenamefont {Geschner}, \citenamefont {Chaou}, \citenamefont {Dwivedi},\ and\ \citenamefont {Brouwer}}]{geschnerBandTopologyBreathing2024}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.~K.}\ \bibnamefont {Geschner}}, \bibinfo {author} {\bibfnamefont {A.~Y.}\ \bibnamefont {Chaou}}, \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Dwivedi}},\ and\ \bibinfo {author} {\bibfnamefont {P.~W.}\ \bibnamefont {Brouwer}},\ }\href {https://doi.org/10.48550/ARXIV.2412.20460} {\bibinfo {title} {On the band topology of the breathing kagome lattice}} (\bibinfo {year} {2024}),\ \bibinfo {note} {\subsection{Other} 4+5 pages, 3+1 figures}\BibitemShut {NoStop}%
 \end{thebibliography}%
