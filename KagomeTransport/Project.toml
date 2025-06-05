@@ -3,7 +3,21 @@ uuid = "38e75774-bddb-443b-8b41-a06cb63f8ca0"
 authors = ["nabil"]
 version = "1.0.0-DEV"
 
+[deps]
+Brillouin = "23470ee3-d0df-4052-8b1a-8cbd6363e7f0"
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
+PlotlyJS = "f0f68f2c-4968-5e81-91da-67840de0976a"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+Symbolics = "0c5d862f-8b57-4792-8d23-62f2024744c7"
+
 [compat]
+Brillouin = "0.5.23"
+CairoMakie = "0.13.7"
+Makie = "0.22.7"
+PlotlyJS = "0.18.16"
+StaticArrays = "1.9.13"
+Symbolics = "6.40.0"
 julia = "1.6.7"
 
 [extras]
